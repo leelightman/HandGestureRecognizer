@@ -9,3 +9,12 @@ This code will create a gesture database in white-black format in our local mach
 * Then, please run: ```python build_db.py 200```. The second parameter means the maximum number of each geasture you want. In this case, I want 200 images for each of these five gestures.
 * Finally, you will see the saved images inside data folder. All of these images are well named. For example, the ```fist``` gesture will start with ```f_num``` where num range from ```[1,200]```.
 ## Some samples:
+
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/o_1.jpg)
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/o_12.jpg)
+
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/p_3.jpg)
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/p_4.jpg)
+
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/f_2.jpg)
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/f_9.jpg)
