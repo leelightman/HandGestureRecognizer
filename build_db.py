@@ -28,7 +28,7 @@ def seg_threshold(image, threshold=30):
 		return (after_threshold, segmented)
 
 if __name__ == "__main__":
-	cam = cv2.VideoCapture(0)
+	cam = cv2.VideoCapture(1)
 
 	num_frame = 0
 
