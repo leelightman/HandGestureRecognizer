@@ -11,15 +11,17 @@ Interpret the meaning of the hand gestures. For example, ‘V’, thumbs up, ‘
 * Template matching
 * Thresholding
 * Deep learning
-* Library:
+## Library:
 * OpenCV
 * NumPy
+* imutils
+* Keras
 ## Data:
 - Our own recording of pictures/videos of several hand gestures such as rock, scissors, paper in different resolution
 - Hand gesture recognition database (Grayscale): https://www.kaggle.com/gti-upm/leapgestrecog
 - Hand gesture database (Color): https://www.gti.ssr.upm.es/data/HandGesture_database.html
 - Static Hand Gesture ASL dataset from IEEE (Video): https://ieee-dataport.org/open-access/static-hand-gesture-asl-dataset
-## Optional:
+### Optional Dataset:
 * https://www.kaggle.com/datamunge/sign-language-mnist#amer_sign2.png
 * https://lttm.dei.unipd.it/downloads/gesture/
 * http://www-rech.telecom-lille.fr/DHGdataset/
