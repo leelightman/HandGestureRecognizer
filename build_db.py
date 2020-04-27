@@ -116,31 +116,31 @@ if __name__ == "__main__":
 		elif key_input == ord('v'):
 			if num_picture['v'] < MAX_NUM:
 				index = num_picture['v'] + 1
-				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
+				path = "data/v/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['v'] += 1
 		elif key_input == ord('o'):
 			if num_picture['o'] < MAX_NUM:
 				index = num_picture['o'] + 1
-				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
+				path = "data/o/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['o'] += 1
 		elif key_input == ord('h'):
 			if num_picture['h'] < MAX_NUM:
 				index = num_picture['h'] + 1
-				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
+				path = "data/h/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['h'] += 1
 		elif key_input == ord('f'):
 			if num_picture['f'] < MAX_NUM:
 				index = num_picture['f'] + 1
-				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
+				path = "data/f/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['f'] += 1
 		elif key_input == ord('p'):
 			if num_picture['p'] < MAX_NUM:
 				index = num_picture['p'] + 1
-				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
+				path = "data/p/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['p'] += 1
 	
