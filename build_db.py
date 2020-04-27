@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
 	CONT = True
 
-	MAX_NUM = 50
+	MAX_NUM = 200
 	## 'v': victory, 'o': OK, 'h': horn, 'f': fist, 'p': palm
 	num_picture = {'v':0, 'o':0, 'h':0, 'f':0, 'p':0}
 	relative_path = './data'
@@ -116,31 +116,31 @@ if __name__ == "__main__":
 		elif key_input == ord('v'):
 			if num_picture['v'] < MAX_NUM:
 				index = num_picture['v'] + 1
-				path = "data/" + (chr(key_input)+"_"+str(index)+".jpg")
+				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['v'] += 1
 		elif key_input == ord('o'):
 			if num_picture['o'] < MAX_NUM:
 				index = num_picture['o'] + 1
-				path = "data/" + (chr(key_input)+"_"+str(index)+".jpg")
+				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['o'] += 1
 		elif key_input == ord('h'):
 			if num_picture['h'] < MAX_NUM:
 				index = num_picture['h'] + 1
-				path = "data/" + (chr(key_input)+"_"+str(index)+".jpg")
+				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['h'] += 1
 		elif key_input == ord('f'):
 			if num_picture['f'] < MAX_NUM:
 				index = num_picture['f'] + 1
-				path = "data/" + (chr(key_input)+"_"+str(index)+".jpg")
+				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['f'] += 1
 		elif key_input == ord('p'):
 			if num_picture['p'] < MAX_NUM:
 				index = num_picture['p'] + 1
-				path = "data/" + (chr(key_input)+"_"+str(index)+".jpg")
+				path = "data/" + (chr(key_input)+"1_"+str(index)+".jpg")
 				cv2.imwrite(path, saved_image)
 				num_picture['p'] += 1
 	
