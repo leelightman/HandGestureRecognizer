@@ -17,22 +17,22 @@ from keras.utils import np_utils
 from keras import backend as K
 
 dic ={"f":0, "h":1, "o":2, "p":3, "v":4}
-path_to_training_data = ["HandGestureRecognizer/data/f",
-                        "HandGestureRecognizer/data/h",
-                        "HandGestureRecognizer/data/o",
-                         "HandGestureRecognizer/data/p",
-                        "HandGestureRecognizer/data/v"]
+path_to_training_data = ["data/f",
+                        "data/h",
+                        "data/o",
+                         "data/p",
+                        "data/v"]
 
 NUM_OF_GESTURES = 5
 NUM_OF_LAYERS = 32
 KERNEL_SIZE = 3
-SIZE =2000
+SIZE =3000
 img_rows, img_cols = 286, 300
 # img_rows, img_cols = 300, 32
 totalImg = []
 s = 0
 label=np.ones((SIZE,),dtype = int)
-im =  np.array(Image.open("HandGestureRecognizer/data/f/f2_1.jpg"))
+im =  np.array(Image.open("data/f/f2_1.jpg"))
 
 m,n = im.shape[0:2]
 print(m,n)
@@ -88,3 +88,15 @@ model.add(Dense(NUM_OF_GESTURES))
 model.add(Activation('softmax'))
 
 
+model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])
+
+model.summary()
+model.get_config()
+
+layer = model.layers[-1]
+get_output = K.function([model.layers[0].input, K.learning_phase()], [layer.output,])
+
+hist = model.fit(X_train, Y_train, batch_size=32, epochs=16,
+             verbose=1, validation_split=0.2)
+
+model.save("newModel.hdf5")
