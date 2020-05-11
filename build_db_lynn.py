@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
 	MAX_NUM = 700
 	## 'v': victory, 'o': OK, 'h': horn, 'f': fist, 'p': palm
-	num_picture = {'v':0, 'o':0, 'h':0, 'f':0, 'p':0}
+	num_picture = {'v': 0, 'o': 0, 'h': 0, 'f': 0, 'p': 0}
 	relative_path = './data'
 	for directory, subdir, files in os.walk(relative_path):
 		for file in files:
@@ -84,17 +84,17 @@ if __name__ == "__main__":
 
 		if num_frame <= 50:
 			get_bg(gray_ROI, 0.5)
-			cv2.putText(clone, 'Please wait for extracting bg...', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+			cv2.putText(clone, 'Please wait for extracting bg...', (20,30), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)
 		else:
 			cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (0,255,0), 3)
-			cv2.putText(clone, 'Please put hand in green box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,0), 2)
+			cv2.putText(clone, 'Please put hand in green box', (20,30), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,0), 2)
 
-			cv2.putText(clone, 'Max number for each image: %d' % (MAX_NUM), (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-			cv2.putText(clone, 'Press v to save Victory; Cur Number: %d' % (num_picture['v']), (20,100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-			cv2.putText(clone, 'Press o to save OK; Cur Number: %d' % (num_picture['o']), (20,135), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-			cv2.putText(clone, 'Press h to save Horn; Cur Number: %d' % (num_picture['h']), (20,170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-			cv2.putText(clone, 'Press f to save Fist; Cur Number: %d' % (num_picture['f']), (20,205), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-			cv2.putText(clone, 'Press p to save Palm; Cur Number: %d' % (num_picture['p']), (20,240), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+			cv2.putText(clone, 'Max number for each image: %d' % (MAX_NUM), (20,65), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)
+			cv2.putText(clone, 'Press v to save Victory; Cur Number: %d' % (num_picture['v']), (20,100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,255), 1)
+			cv2.putText(clone, 'Press o to save OK; Cur Number: %d' % (num_picture['o']), (20,135), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,255), 1)
+			cv2.putText(clone, 'Press h to save Horn; Cur Number: %d' % (num_picture['h']), (20,170), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,255), 1)
+			cv2.putText(clone, 'Press f to save Fist; Cur Number: %d' % (num_picture['f']), (20,205), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,255), 1)
+			cv2.putText(clone, 'Press p to save Palm; Cur Number: %d' % (num_picture['p']), (20,240), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,255), 1)
 
 			gesture_seg = seg_threshold(gray_ROI)
 
