@@ -32,4 +32,3 @@ Interpret the meaning of the hand gestures. For example, ‘V’, thumbs up, ‘
 * Expected Results:
 Recognize the input hand gesture from the image/ video stream
 Interpreting the meaning of the gesture
-
