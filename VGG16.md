@@ -4,7 +4,7 @@
 
 VGG16 (**V**isual **G**eometry **G**roup) is a CNN (**C**onvolution **N**eural **N**et ) architecture developed by University of Oxford. It has 16 weighted layers. We chose this model because it is considered to be one of the most distinguished computer vision model architecture. VGG16 has 5 convolution layers group, each consists of 2 or 3 conv layers. They focused on having convolution layers of 3x3 filter with a stride 1 and always used same padding and maxpool layer of 2x2 filter of stride 2. It follows this arrangement of convolution and max pool layers consistently throughout the whole architecture. For output it has 3 FC (fully connected layers) followed by a softmax. This network is a pretty large network and it has about 134 million (approx) parameters.
 
-For this project, for one of the implementation methods, we built a VGG16 network from scratch. (For details please look at **handGestureVGGModel.ipynb**)
+For this project, for one of the implementation methods, we built a VGG16 network from scratch. (For details please look at [**handGestureVGGModel.ipynb**](https://github.com/leelightman/HandGestureRecognizer/blob/master/handGestureVGGModel.ipynb))
 
 ### Layer explain
 
