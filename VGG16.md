@@ -54,7 +54,7 @@ Min Loss: 0.006036893437759807
 
 ### Result
 
-<video src="/Users/lynnli/NYU Google Drive/Spring2020/CV/projectFinal/report/asset/5_11_take1.mov"></video>
+<video src="asset/5_11_take1.mov"></video>
 
 ### Biblography
 
