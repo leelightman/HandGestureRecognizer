@@ -54,7 +54,7 @@ Min Loss: 0.006036893437759807
 
 ### Result
 
-<video src="asset/5_11_take1.mov"></video>
+[Link to Video](https://github.com/leelightman/HandGestureRecognizer/blob/master/asset/5_11_take1.mov)
 
 ### Biblography
 
