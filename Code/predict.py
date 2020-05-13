@@ -35,7 +35,7 @@ def predict_gesture(input_image, model):
 	return np.argmax(result) # output the index with the largest value
 
 # load the trained model
-model = load_model('models/saved_model.hdf5')
+model = load_model('../models/saved_model.hdf5')
 
 # mapping between the index and gesture name
 gesture_map = ['Fist', 'Rock', 'OK', 'Palm', 'Victory']
