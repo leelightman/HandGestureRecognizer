@@ -43,7 +43,7 @@ This code will create a gesture database in white-black format in our local mach
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/f_9.jpg)
 
 ## Model 1: [VGG16_additional_layers.ipynb](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/VGG16_additional_layers.ipynb) (recognition model)
-This code is mainly for building our own predicting model based on pre-trained model ```VGG16``` from ```keras```. Since the shape of output of the original model (VGG16) is (1000, 1), which can used to classify 1000 labels. However, there are only five different kinds of gestures we have, so we need to transform this 1000 dimension to 5.
+This model is built mainly based on the pre-trained model ```VGG16``` from ```keras```. Since the shape of output of the original model (VGG16) is (1000, 1), which can used to classify 1000 labels. However, there are only five different kinds of gestures we have, so we need to transform this 1000 dimension to 5.
 #### What this program actually do:
 * Adpated from VGG16 and add more linear layers after it to transform the output to (5, 1)
 * The code inside notebook is highly annotated, so it's not so hard to interpret.
@@ -60,7 +60,7 @@ This code will generate the prediction for the new input gestures based on the m
 * Similar to what we did in ```build_db.py```, we also implment the functionality of recalibration in case users move their computer by accident. Accordingly, you don't have to re-run your program, which can be time-consuming because loading the trained model.
 #### How to run this code:
 * Clone this total project and download the model from the links share inside the 'models' folder.
-* cd to the 'Code' folder and use ```python predict.py```
+* cd to the 'Code' folder and use ```python predict.py '<model_name>'```, where ```model_name``` refers to the model selected by users.
 #### Some predicting examples:
 Results are shown at the beginning.
 
