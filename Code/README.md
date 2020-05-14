@@ -30,6 +30,9 @@ This code will generate the prediction for the new input gestures based on the m
 * Clone this total project and download the model from the links share inside the 'models' folder.
 * cd to the 'Code' folder and use ```python predict.py```
 ## Some predicting examples:
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/ok.png)
+
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/rock.png)
 
 # VGG16_additional_layers.ipynb  (recognition model)
 This code is mainly for building our own predicting model based on pre-trained model ```VGG16``` from ```keras```. Since the shape of output of the original model (VGG16) is (1000, 1), which can used to classify 1000 labels. However, there are only five different kinds of gestures we have, so we need to transform this 1000 dimension to 5.
