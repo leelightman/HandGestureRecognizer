@@ -12,8 +12,7 @@ import sys
 
 # keras version: 2.3.1
 from keras.models import load_model
-from keras.preprocessing.image import image
-from keras.preprocessing.image import img_to_array
+from keras.preprocessing.image import image, img_to_array
 from keras.applications.vgg16 import preprocess_input
 
 # Use a var outside the excution in order to keep the name between two predictions
@@ -40,8 +39,12 @@ model = load_model('../models/saved_model.hdf5')
 # mapping between the index and gesture name
 gesture_map = ['Fist', 'Rock', 'OK', 'Palm', 'Victory']
 
-## global variable for the background
-background = None
+
+background = None # global variable for the background
+RESET = False # global vaiable for recompute the background
+cur_frame = None # the frame when press 'r' to reset
+
+## Use this function to compute the initial background
 def get_bg(image, W):
 	global background
 	# for the very beginning case
@@ -124,29 +127,40 @@ if __name__ == "__main__":
 			get_bg(gray_ROI, 0.5)
 			cv2.putText(clone, 'Please wait for extracting bg...', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 		else:
-			# draw a green box onto clone frame where the hand in
-			cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (0,255,0), 3)
-			cv2.putText(clone, 'Please put hand in green box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,0), 2)
+			if RESET == False:
+				# draw a green box onto clone frame where the hand in
+				cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (0,255,0), 3)
+				cv2.putText(clone, 'Please put hand in green box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+				cv2.putText(clone, 'Press r to recalibrate the background.', (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 
-			# Extract the hand region from the ROI
-			gesture_seg = seg_threshold(gray_ROI)
+				# Extract the hand region from the ROI
+				gesture_seg = seg_threshold(gray_ROI)
 
-			# only if there is a hand!!!
-			if gesture_seg:
-				(thresh, seg) = gesture_seg
+				# only if there is a hand!!!
+				if gesture_seg:
+					(thresh, seg) = gesture_seg
 
-				## New added
-				# We predict the gesture each 10 frames to avoid the latency
-				if (num_frame - 50) % 10 == 0:
-					index = predict_gesture(thresh, model)
-					gesture_name = gesture_map[index]
+					## New added
+					# We predict the gesture each 10 frames to avoid the latency
+					if (num_frame - 50) % 10 == 0:
+						index = predict_gesture(thresh, model)
+						gesture_name = gesture_map[index]
 
-				cv2.putText(clone, 'This gesture is: %s' % (gesture_name), (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+					cv2.putText(clone, 'This gesture is: %s' % (gesture_name), (20,120), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+					#cv2.putText(clone, 'Press r to recalibrate the background.', (20,100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 
-				# draw a contour for the hand in clone frame
-				cv2.drawContours(clone, [seg + (box_left, box_top)], -1, (0, 0, 255))
-				# show the thresholded iamge for hand in a separated window
-				cv2.imshow("Thresholding", thresh)
+					# draw a contour for the hand in clone frame
+					cv2.drawContours(clone, [seg + (box_left, box_top)], -1, (0, 0, 255))
+					# show the thresholded iamge for hand in a separated window
+					cv2.imshow("Thresholding", thresh)
+			else:
+				# Use 30 frames after 'r' pressed to recalibrate the background
+				if num_frame - cur_frame < 30:
+					get_bg(gray_ROI, 0.5)
+					cv2.putText(clone, 'Please wait for recalibrating bg...', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+				else:
+					# change the RESET to False
+					RESET = False
 
 		
 		# show the clone frame in a separated window
@@ -157,6 +171,10 @@ if __name__ == "__main__":
 
 		if key_input == ord('q'):
 			CONT = False
+		elif key_input == ord('r'):
+			RESET = True
+			background = None
+			cur_frame = num_frame
 	
 # release the wencam and destroy all existing windows
 cam.release()
