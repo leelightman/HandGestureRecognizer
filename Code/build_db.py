@@ -46,6 +46,8 @@ def seg_threshold(image, threshold=50):
 
 if __name__ == "__main__":
 	cam = cv2.VideoCapture(0)
+	# If '0' is not working, please try '1'
+	# cam = cv2.VideoCapture(1)
 
 	# count the total frames
 	num_frame = 0
@@ -119,9 +121,9 @@ if __name__ == "__main__":
 			cv2.putText(clone, 'Please wait for extracting bg...', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 		else:
 			if RESET == False:
-				# draw a green box onto clone frame where the hand in
-				cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (0,255,0), 3)
-				cv2.putText(clone, 'Please put hand in green box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,0), 2)
+				# draw a blue box onto clone frame where the hand in
+				cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (255,255,0), 3)
+				cv2.putText(clone, 'Please put hand in blue box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,0), 2)
 
 				# the details for the max number and the number for each gesture
 				cv2.putText(clone, 'Max number for each image: %d' % (MAX_NUM), (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
@@ -132,7 +134,7 @@ if __name__ == "__main__":
 				cv2.putText(clone, 'Press h to save Horn; Cur Number: %d' % (num_picture['h']), (20,170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 				cv2.putText(clone, 'Press f to save Fist; Cur Number: %d' % (num_picture['f']), (20,205), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 				cv2.putText(clone, 'Press p to save Palm; Cur Number: %d' % (num_picture['p']), (20,240), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-				cv2.putText(clone, 'Press r to recalibrate the background.', (20,275), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+				cv2.putText(clone, 'Press r to recalibrate the background.', (20,300), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,255,255), 2)
 
 				gesture_seg = seg_threshold(gray_ROI)
 
