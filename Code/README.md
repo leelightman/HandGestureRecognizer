@@ -20,6 +20,12 @@ This code will create a gesture database in white-black format in our local mach
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/f_2.jpg)
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/f_9.jpg)
 
+# VGG16_additional_layers.ipynb  (recognition model)
+This code is mainly for building our own predicting model based on pre-trained model ```VGG16``` from ```keras```. Since the shape of output of the original model (VGG16) is (1000, 1), which can used to classify 1000 labels. However, there are only five different kinds of gestures we have, so we need to transform this 1000 dimension to 5.
+## What this program actually do:
+* Adpated from VGG16 and add more linear layers after it to transform the output to (5, 1)
+* The code inside notebook is highly annotated, so it's not so hard to interpret.
+
 # predict.py (predict gestures based on trained model)
 This code will generate the prediction for the new input gestures based on the model trained inside the notebook, which can be found inside the 'models' folder. Notice that there is more than one model inside this folder, so users can change whatever they want to make prediction. As for now, out models support 5 different kinds of gestures for predicting, including 'palm', 'OK', 'V', 'Rock' and 'fist'. However, it's kind of simple to increase this number. Users just need to do a little midification just inside the build_db.py and notebook.
 ## What this program actually do:
@@ -34,8 +40,4 @@ This code will generate the prediction for the new input gestures based on the m
 
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/rock.png)
 
-# VGG16_additional_layers.ipynb  (recognition model)
-This code is mainly for building our own predicting model based on pre-trained model ```VGG16``` from ```keras```. Since the shape of output of the original model (VGG16) is (1000, 1), which can used to classify 1000 labels. However, there are only five different kinds of gestures we have, so we need to transform this 1000 dimension to 5.
-## What this program actually do:
-* Adpated from VGG16 and add more linear layers after it to transform the output to (5, 1)
-* The code inside notebook is highly annotated, so it's not so hard to interpret.
+
