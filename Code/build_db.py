@@ -126,14 +126,14 @@ if __name__ == "__main__":
 				cv2.putText(clone, 'Please put hand in blue box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,0), 2)
 
 				# the details for the max number and the number for each gesture
-				cv2.putText(clone, 'Max number for each image: %d' % (MAX_NUM), (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+				cv2.putText(clone, 'Max number for each image: %d' % (MAX_NUM), (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
 				# you can see the information on screen
 				# when you want to save images, please keep pressing the key
-				cv2.putText(clone, 'Press v to save Victory; Cur Number: %d' % (num_picture['v']), (20,100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-				cv2.putText(clone, 'Press o to save OK; Cur Number: %d' % (num_picture['o']), (20,135), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-				cv2.putText(clone, 'Press h to save Horn; Cur Number: %d' % (num_picture['h']), (20,170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-				cv2.putText(clone, 'Press f to save Fist; Cur Number: %d' % (num_picture['f']), (20,205), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-				cv2.putText(clone, 'Press p to save Palm; Cur Number: %d' % (num_picture['p']), (20,240), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+				cv2.putText(clone, 'Press v to save Victory; Cur Number: %d' % (num_picture['v']), (20,100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
+				cv2.putText(clone, 'Press o to save OK; Cur Number: %d' % (num_picture['o']), (20,135), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
+				cv2.putText(clone, 'Press h to save Horn; Cur Number: %d' % (num_picture['h']), (20,170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
+				cv2.putText(clone, 'Press f to save Fist; Cur Number: %d' % (num_picture['f']), (20,205), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
+				cv2.putText(clone, 'Press p to save Palm; Cur Number: %d' % (num_picture['p']), (20,240), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
 				cv2.putText(clone, 'Press r to recalibrate the background.', (20,300), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,255,255), 2)
 
 				gesture_seg = seg_threshold(gray_ROI)
