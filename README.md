@@ -52,7 +52,7 @@ To be added
 #### What this program actually do:
 To be added
 
-## Prediction [predict.py](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/predict.py)
+## Prediction: [predict.py](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/predict.py)
 This code will generate the prediction for the new input gestures based on the model trained inside the notebook, which can be found inside the 'models' folder. Notice that there is more than one model inside this folder, so users can change whatever they want to make prediction. As for now, out models support 5 different kinds of gestures for predicting, including 'palm', 'OK', 'V', 'Rock' and 'fist'. However, it's kind of simple to increase this number. Users just need to do a little midification just inside the build_db.py and notebook.
 #### What this program actually do:
 * To avoid the frame latency, we predict the gesture once per 10 frames. So, once users put their hands inside the ROI, they might need to wait 0.5-1.0 second to be presented the name of gestures on the screen.
