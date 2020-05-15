@@ -32,6 +32,8 @@ model = load_model('models/vgg16_hand_3.h5')
 
 gesture_map = ['Fist', 'Rock', 'OK', 'Palm', 'Victory']
 gestures = [':raised_fist:',':love-you_gesture:',':OK_hand:',':raised_back_of_hand:',':victory_hand:']
+ok_emoji = cv2.imread("asset/ok.png")
+ratio = ok_emoji.shape[1] / ok_emoji.shape[0]
 
 ## global variable for the background
 background = None
@@ -120,6 +122,9 @@ if __name__ == "__main__":
 			# draw a green box onto clone frame where the hand in
 			cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (0,255,0), 3)
 			cv2.putText(clone, 'Please put hand in green box', (20,30), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,0), 1)
+			ok_emoji = cv2.resize(ok_emoji, clone.shape[1::-1])
+
+			cv2.addWeighted(clone, 0.5, ok_emoji, 0.5, 0)
 
 			# the details for the max number and the number for each gesture
 			#cv2.putText(clone, 'Max number for each image: %d' % (MAX_NUM), (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
@@ -148,7 +153,7 @@ if __name__ == "__main__":
 				#index = predict_gesture(thresh, model)
 				#gesture_name = gesture_map[index]
 				cv2.putText(clone, 'This gesture is: %s' % (gesture_name), (20,65), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 1)
-				
+
 				# draw a contour for the hand in clone frame
 				cv2.drawContours(clone, [seg + (box_left, box_top)], -1, (0, 0, 255))
 				# show the thresholded iamge for hand in a separated window
