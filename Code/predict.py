@@ -6,6 +6,7 @@
 import numpy as np  ## vesion: 1.18.3
 import cv2  ## version: 4.1.2
 import imutils  ## version: 0.5.3
+import emoji ## version: 0.5.4
 
 import os
 import sys
@@ -33,12 +34,27 @@ def predict_gesture(input_image, model):
 	result = result.flatten() # shape from (5,1) to (5,)
 	return np.argmax(result) # output the index with the largest value
 
+# Use this function to predict (using another model)
+# Added by Lynn
+def predict_gesture_1(input_image, model):
+	x = input_image.copy()
+	x = cv2.resize(x, (244,244))
+	x = np.stack((x,)*3, axis=-1)
+	x = np.expand_dims(x, axis=0)
+	#print(x.shape)
+	#x = preprocess_input(x)
+	result = model.predict(x)
+	
+	return np.argmax(result[0])
+
 # load the trained model
-model = load_model('../models/saved_model.hdf5')
+model_name = sys.argv[1]
+model = load_model('../models/' + model_name)
 
 # mapping between the index and gesture name
 gesture_map = ['Fist', 'Rock', 'OK', 'Palm', 'Victory']
-
+# New added by Lynn for printing the emoji
+gestures_emoji = [':raised_fist:',':love-you_gesture:',':OK_hand:',':raised_back_of_hand:',':victory_hand:']
 
 background = None # global variable for the background
 RESET = False # global vaiable for recompute the background
@@ -77,6 +93,8 @@ def seg_threshold(image, threshold=5):
 
 if __name__ == "__main__":
 	cam = cv2.VideoCapture(0)
+	# If '0' is not working, please try '1'
+	# cam = cv2.VideoCapture(1)
 
 	# count the total frames
 	num_frame = 0
@@ -128,10 +146,10 @@ if __name__ == "__main__":
 			cv2.putText(clone, 'Please wait for extracting bg...', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 		else:
 			if RESET == False:
-				# draw a green box onto clone frame where the hand in
-				cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (0,255,0), 3)
-				cv2.putText(clone, 'Please put hand in green box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-				cv2.putText(clone, 'Press r to recalibrate the background.', (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+				# draw a blue box onto clone frame where the hand in
+				cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (255,255,0), 3)
+				cv2.putText(clone, 'Please put hand in blue box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,0), 2)
+				cv2.putText(clone, 'Press r to recalibrate the background.', (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2)
 
 				# Extract the hand region from the ROI
 				gesture_seg = seg_threshold(gray_ROI)
@@ -143,10 +161,14 @@ if __name__ == "__main__":
 					## New added
 					# We predict the gesture each 10 frames to avoid the latency
 					if (num_frame - 50) % 10 == 0:
-						index = predict_gesture(thresh, model)
+						if model_name=='saved_model.hdf5':
+							index = predict_gesture(thresh, model)
+						else:
+							index = predict_gesture_1(thresh, model)
 						gesture_name = gesture_map[index]
+						print(emoji.emojize(gestures_emoji[index]))
 
-					cv2.putText(clone, 'This gesture is: %s' % (gesture_name), (20,120), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+					cv2.putText(clone, 'This gesture is: %s' % (gesture_name), (20,120), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255,255,255), 2)
 					#cv2.putText(clone, 'Press r to recalibrate the background.', (20,100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 
 					# draw a contour for the hand in clone frame
