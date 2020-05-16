@@ -7,6 +7,7 @@ import numpy as np  ## vesion: 1.18.3
 import cv2  ## version: 4.1.2
 import imutils  ## version: 0.5.3
 import emoji ## version: 0.5.4
+from util import *
 
 import os
 import sys
@@ -56,40 +57,8 @@ gesture_map = ['Fist', 'Rock', 'OK', 'Palm', 'Victory']
 # New added by Lynn for printing the emoji
 gestures_emoji = [':raised_fist:',':love-you_gesture:',':OK_hand:',':raised_back_of_hand:',':victory_hand:']
 
-background = None # global variable for the background
 RESET = False # global vaiable for recompute the background
 cur_frame = None # the frame when press 'r' to reset
-
-## Use this function to compute the initial background
-def get_bg(image, W):
-	global background
-	# for the very beginning case
-	if background is None:
-		background = image.copy().astype("float") # use copy() to avoid changing the orginal image
-		return
-	# use this function to combine the new image and the 
-	# existing background together in some weight
-	cv2.accumulateWeighted(image, background, W)
-
-## use this function to get the thresholded image and segmented image for hand
-def seg_threshold(image, threshold=5):
-	global background
-
-	# substraction between background and the hand image
-	subtraction = cv2.absdiff(background.astype("uint8"), image)
-
-	# for the pixel in substraction, larger then threshold will be assigned to 255, otherwise 1
-	(_, after_threshold) = cv2.threshold(subtraction, threshold, 255, cv2.THRESH_BINARY)
-
-	# draw the contours, copy() to avoid modifying
-	(contours, _) = cv2.findContours(after_threshold.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-	if len(contours) == 0:
-		return
-	else:
-		# we only need the largest contour
-		segmented = max(contours, key=cv2.contourArea)
-		return (after_threshold, segmented)
 
 if __name__ == "__main__":
 	cam = cv2.VideoCapture(0)
@@ -150,6 +119,7 @@ if __name__ == "__main__":
 				cv2.rectangle(clone, (box_left, box_top), (box_right, box_bottom), (255,255,0), 3)
 				cv2.putText(clone, 'Please put hand in blue box', (20,30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,0), 2)
 				cv2.putText(clone, 'Press r to recalibrate the background.', (20,65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2)
+				cv2.putText(clone, 'Press q to shutdown the program.', (20,100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 
 				# Extract the hand region from the ROI
 				gesture_seg = seg_threshold(gray_ROI)
@@ -159,16 +129,16 @@ if __name__ == "__main__":
 					(thresh, seg) = gesture_seg
 
 					## New added
-					# We predict the gesture each 10 frames to avoid the latency
-					if (num_frame - 50) % 10 == 0:
+					# We predict the gesture each 5 frames to avoid the latency
+					if (num_frame - 50) % 5 == 0:
 						if model_name=='saved_model.hdf5':
 							index = predict_gesture(thresh, model)
 						else:
 							index = predict_gesture_1(thresh, model)
 						gesture_name = gesture_map[index]
-						print(emoji.emojize(gestures_emoji[index]))
+						#print(emoji.emojize(gestures_emoji[index]))
 
-					cv2.putText(clone, 'This gesture is: %s' % (gesture_name), (20,120), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255,255,255), 2)
+					cv2.putText(clone, 'This gesture is: %s' % (gesture_name), (20,155), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255,255,255), 2)
 					#cv2.putText(clone, 'Press r to recalibrate the background.', (20,100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 
 					# draw a contour for the hand in clone frame
