@@ -15,6 +15,7 @@ Dongzi Qu (dq394), Lynn Li (ml6589), Mina Lee (ml6543), Zili Xie (zx979)
 * Keras
 * NumPy 
 ## Some Results:
+Here are some testing samples, and for more results, you can find from inside ```Code/samples``` or watch this great [video](https://drive.google.com/file/d/1uDyKOb6X-R4Ju5196eYVg2bNBCSeRFZI/view)
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_o.png)
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_r.png)
 
@@ -48,18 +49,15 @@ This model is built mainly based on the pre-trained model ```VGG16``` from ```ke
 * Adpated from VGG16 and add more linear layers after it to transform the output to (5, 1)
 * The code inside notebook is highly annotated, so it's not so hard to interpret.
 ## Model 2: [handGestureVGGModel.ipynb](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/handGestureVGGModel.ipynb) (recognition model)
-To be added
-#### What this program actually do:
-To be added
+For model 2, we try not to use the pre-trained model. Instead, we plan to build our model follow the same ways as VGG16 but change the order of layers and resize the output shape between several layers. The detailed framework of this model can be found inside ```VGG16.md```.
 
 ## Prediction: [predict.py](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/predict.py)
 This code will generate the prediction for the new input gestures based on the model trained inside the notebook, which can be found inside the 'models' folder. Notice that there is more than one model inside this folder, so users can change whatever they want to make prediction. As for now, out models support 5 different kinds of gestures for predicting, including 'palm', 'OK', 'V', 'Rock' and 'fist'. However, it's kind of simple to increase this number. Users just need to do a little midification just inside the build_db.py and notebook.
 #### What this program actually do:
-* To avoid the frame latency, we predict the gesture once per 10 frames. So, once users put their hands inside the ROI, they might need to wait 0.5-1.0 second to be presented the name of gestures on the screen.
-* Emoji shows on the screen rather than on the terminal (To be added...)
+* To avoid the frame latency, we predict the gesture once per 5 frames. So, once users put their hands inside the ROI, they might need to wait half a second to be presented the name of gestures on the screen.
 * Similar to what we did in ```build_db.py```, we also implment the functionality of recalibration in case users move their computer by accident. Accordingly, you don't have to re-run your program, which can be time-consuming because loading the trained model.
 #### How to run this code:
-* Clone this total project and download the model from the links share inside the 'models' folder.
+* Clone this total project and download the model from the links share inside the ```models``` folder.
 * cd to the 'Code' folder and use ```python predict.py '<model_name>'```, where ```model_name``` refers to the model selected by users.
 #### Some predicting examples:
 Results are shown at the beginning.
