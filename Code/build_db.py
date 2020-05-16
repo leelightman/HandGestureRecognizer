@@ -5,44 +5,13 @@
 import numpy as np  ## vesion: 1.18.3
 import cv2  ## version: 4.1.2
 import imutils  ## version: 0.5.3
+from util import *
 
 import os
 import sys
 
-background = None # global variable for the background
 RESET = False # global vaiable for recompute the background
 cur_frame = None # the frame when press 'r' to reset
-
-## Use this function to compute the initial background
-def get_bg(image, W):
-	global background
-	# for the very beginning case
-	if background is None:
-		background = image.copy().astype("float") # use copy() to avoid changing the orginal image
-		return
-	# use this function to combine the new image and the 
-	# existing background together in some weight
-	cv2.accumulateWeighted(image, background, W)
-
-## use this function to get the thresholded image and segmented image for hand
-def seg_threshold(image, threshold=50):
-	global background
-
-	# substraction between background and the hand image
-	subtraction = cv2.absdiff(background.astype("uint8"), image)
-
-	# for the pixel in substraction, larger then threshold will be assigned to 255, otherwise 1
-	(_, after_threshold) = cv2.threshold(subtraction, threshold, 255, cv2.THRESH_BINARY)
-
-	# draw the contours, copy() to avoid modifying
-	(contours, _) = cv2.findContours(after_threshold.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-	if len(contours) == 0:
-		return
-	else:
-		# we only need the largest contour
-		segmented = max(contours, key=cv2.contourArea)
-		return (after_threshold, segmented)
 
 if __name__ == "__main__":
 	cam = cv2.VideoCapture(0)
@@ -134,7 +103,8 @@ if __name__ == "__main__":
 				cv2.putText(clone, 'Press h to save Horn; Cur Number: %d' % (num_picture['h']), (20,170), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
 				cv2.putText(clone, 'Press f to save Fist; Cur Number: %d' % (num_picture['f']), (20,205), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
 				cv2.putText(clone, 'Press p to save Palm; Cur Number: %d' % (num_picture['p']), (20,240), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255), 2)
-				cv2.putText(clone, 'Press r to recalibrate the background.', (20,300), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,255,255), 2)
+				cv2.putText(clone, 'Press r to recalibrate the background.', (20,300), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2)
+				cv2.putText(clone, 'Press q to shutdown the program.', (20,340), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
 
 				gesture_seg = seg_threshold(gray_ROI)
 
