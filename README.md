@@ -14,9 +14,9 @@ Dongzi Qu (dq394), Lynn Li (ml6589), Mina Lee (ml6543), Zili Xie (zx979)
 * OpenCV
 * Keras
 * NumPy 
-## Some Results (Can be updated to better image/video):
-![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/ok.png)
-![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/rock.png)
+## Some Results:
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_o.png)
+![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_r.png)
 
 ------
 # Outline
