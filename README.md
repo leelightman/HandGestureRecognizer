@@ -15,8 +15,18 @@ Dongzi Qu (dq394), Lynn Li (ml6589), Mina Lee (ml6543), Zili Xie (zx979)
 * Keras
 * NumPy 
 ## How to use:
-* First, go the ```models``` folder to download the models from our drive following the instructions, and save them to ```models```.
+* First, download the necessary libraries.
+```
+pip install -r requirements.txt
+cd models
+``` 
+* Go the ```models``` folder to download the models from our drive following the instructions, and save them to in ```/models```.
 * Then, switch to the ```Code``` and run ```python predict.py <model_name>```, where ```model_name``` refers to the model you want to use.
+```
+cd ../Code
+(example) python predict.py saved_model.hdf5
+``` 
+* After setting up the camera, please recalibrate the program by pushing the "r".
 ## Some Results:
 Here are some testing samples, and for more results, you can find from inside ```Code/samples``` or watch this great [video](https://drive.google.com/file/d/1uDyKOb6X-R4Ju5196eYVg2bNBCSeRFZI/view)
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_o.png)
