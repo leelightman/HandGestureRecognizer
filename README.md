@@ -1,8 +1,8 @@
 # Hand Gesture Recognition
 
-## Team:
+## Collaborators:
 
-Dongzi Qu (dq394), Lynn Li (ml6589), Mina Lee (ml6543), Zili Xie (zx979)
+Dongzi Qu, Lynn Li, Mina Lee, Zili Xie
 
 ## Description:
 
@@ -31,7 +31,10 @@ Dongzi Qu (dq394), Lynn Li (ml6589), Mina Lee (ml6543), Zili Xie (zx979)
 
 ## Some Results:
 
-Here are some testing samples, and for more results, you can find from inside `Code/samples` or watch this great [video](https://drive.google.com/file/d/1uDyKOb6X-R4Ju5196eYVg2bNBCSeRFZI/view)
+Here are some testing samples, and for more results, you can find from inside `Code/samples` or watch this great [video](https://youtu.be/m2ymKHthrOw)
+
+<video src="https://youtu.be/m2ymKHthrOw"></video>
+
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_o.png)
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_r.png)
 
