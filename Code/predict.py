@@ -61,7 +61,7 @@ RESET = False # global vaiable for recompute the background
 cur_frame = None # the frame when press 'r' to reset
 
 if __name__ == "__main__":
-	cam = cv2.VideoCapture(0)
+	cam = cv2.VideoCapture(1)
 	# If '0' is not working, please try '1'
 	# cam = cv2.VideoCapture(1)
 

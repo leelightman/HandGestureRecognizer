@@ -16,7 +16,8 @@ Dongzi Qu (dq394), Lynn Li (ml6589), Mina Lee (ml6543), Zili Xie (zx979)
 * NumPy 
 ## How to use:
 * First, go the ```models``` folder to download the models from our drive following the instructions, and save them to ```models```.
-* Then, switch to the ```Code``` and run ```python predict.py <model_name>```, where ```model_name``` refers to the model you want to use.
+*  ```cd Code``` 
+*  ```python predict.py <model_name>``` (*model_name* refers to the model you want to use)
 ## Some Results:
 Here are some testing samples, and for more results, you can find from inside ```Code/samples``` or watch this great [video](https://drive.google.com/file/d/1uDyKOb6X-R4Ju5196eYVg2bNBCSeRFZI/view)
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_o.png)
@@ -59,9 +60,6 @@ This code will generate the prediction for the new input gestures based on the m
 #### What this program actually do:
 * To avoid the frame latency, we predict the gesture once per 5 frames. So, once users put their hands inside the ROI, they might need to wait half a second to be presented the name of gestures on the screen.
 * Similar to what we did in ```build_db.py```, we also implment the functionality of recalibration in case users move their computer by accident. Accordingly, you don't have to re-run your program, which can be time-consuming because loading the trained model.
-#### How to run this code:
-* Clone this total project and download the model from the links share inside the ```models``` folder.
-* cd to the 'Code' folder and use ```python predict.py '<model_name>'```, where ```model_name``` refers to the model selected by users.
 #### Some predicting examples:
 Results are shown at the beginning.
 
