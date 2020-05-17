@@ -33,7 +33,7 @@ Dongzi Qu, Lynn Li, Mina Lee, Zili Xie
 
 Here are some testing samples, and for more results, you can find from inside `Code/samples` or watch this great [video](https://youtu.be/m2ymKHthrOw)
 
-<img href="https://youtu.be/m2ymKHthrOw" src="https://github.com/leelightman/HandGestureRecognizer/blob/master/asset/model2_result.png" />
+<a href="https://youtu.be/m2ymKHthrOw"><img src="https://github.com/leelightman/HandGestureRecognizer/blob/master/asset/model2_result.png" /></a>
 
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_o.png)
 ![image](https://github.com/leelightman/HandGestureRecognizer/blob/master/Code/samples/readme_r.png)
