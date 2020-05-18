@@ -9,3 +9,4 @@ __pycache__/
 
 *.hdf5
 *.h5
+.ipynb_checkpoints
